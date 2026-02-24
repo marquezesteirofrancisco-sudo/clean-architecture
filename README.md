@@ -15,7 +15,7 @@ El proyecto sigue el círculo de dependencias de Robert C. Martin, donde las dep
 
 ### 📁 Capas del Proyecto
 
-1.  **`CL_EnterpriseLayer` (Dominio):** * El corazón del sistema. Contiene las entidades (`Beer`, `User`) libres de frameworks.
+1.  **`CA_EnterpriseLayer` (Dominio):** * El corazón del sistema. Contiene las entidades (`Beer`, `User`) libres de frameworks.
 2.  **`CA_ApplicationLayer` (Casos de Uso):** * Orquestación de la lógica de negocio. Contiene los `UseCases` para Listar, Guardar, Actualizar y Eliminar, además de las interfaces de los repositorios.
 3.  **`CA_InterfaceAdapters` (Adaptadores):**
     * **Data:** El contexto de Entity Framework Core y migraciones.
