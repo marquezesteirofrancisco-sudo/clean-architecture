@@ -1,3 +1,5 @@
+![Esquema de Clean Architecture](./asset/Plano-de Clean-Archiquecture.png)
+
 "# clean-architecture" 
 # 🍺 Beer & User Management System
 
