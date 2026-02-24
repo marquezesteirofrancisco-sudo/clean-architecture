@@ -1,0 +1,6 @@
+@CA_FrameworksDrivers_API_HostAddress = http://localhost:5105
+
+GET {{CA_FrameworksDrivers_API_HostAddress}}/api/beer/
+Accept: application/json
+
+###
