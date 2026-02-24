@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/clean-architecture.png" alt="Esquema de Clean Architecture" width="350">
+  <img src="./assets/clean-architecture.png" alt="Esquema de Clean Architecture" width="550">
 </p>
 
 "# clean-architecture" 
