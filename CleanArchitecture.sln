@@ -29,6 +29,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.- CA-FrameworksDrivers-Ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.- CA-FrameworksDrivers-Console", "CA-FrameworksDrivers-Console\4.- CA-FrameworksDrivers-Console.csproj", "{62C44B38-246F-4C03-8214-21FD67B60757}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "asset", "asset", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		..\Plano-de Clean-Archiquecture.png = ..\Plano-de Clean-Archiquecture.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
