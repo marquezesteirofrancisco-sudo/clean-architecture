@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto-Pruebas-Windows-Fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto-Pruebas-Consola", "Proyecto-Pruebas-Consola\Proyecto-Pruebas-Consola.csproj", "{1A75E1D6-3D31-55DF-76FB-FBAA0E9E2D99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.- CA-InterfaceAdapters-Adapters", "CA-InterfaceAdapters-Adapters\3.- CA-InterfaceAdapters-Adapters.csproj", "{3EBAA205-499B-AD86-E6AC-775E319A2853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.- CA-FrameworksDrivers-ExtenalService", "CA-FrameworksDrivers-ExtenalService\4.- CA-FrameworksDrivers-ExtenalService.csproj", "{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{1A75E1D6-3D31-55DF-76FB-FBAA0E9E2D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A75E1D6-3D31-55DF-76FB-FBAA0E9E2D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A75E1D6-3D31-55DF-76FB-FBAA0E9E2D99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EBAA205-499B-AD86-E6AC-775E319A2853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EBAA205-499B-AD86-E6AC-775E319A2853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EBAA205-499B-AD86-E6AC-775E319A2853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EBAA205-499B-AD86-E6AC-775E319A2853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

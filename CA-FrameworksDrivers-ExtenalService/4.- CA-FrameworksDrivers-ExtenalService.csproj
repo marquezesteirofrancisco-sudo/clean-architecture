@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>CA_FrameworksDrivers_ExtenalService</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CA-ApplicationLayer\2.- CA-ApplicationLayer.csproj" />
+    <ProjectReference Include="..\CA-InterfaceAdapters-Adapters\3.- CA-InterfaceAdapters-Adapters.csproj" />
+    <ProjectReference Include="..\CL-EnterpriseLayer\1.- CA-EnterpriseLayer.csproj" />
+  </ItemGroup>
+
+</Project>

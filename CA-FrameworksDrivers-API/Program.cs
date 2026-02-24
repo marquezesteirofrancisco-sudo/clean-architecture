@@ -1,7 +1,10 @@
 using CA_ApplicationLayer;
 using CA_FrameworksDrivers_API.Middelwares;
 using CA_FrameworksDrivers_API.Validator;
+using CA_FrameworksDrivers_ExtenalService;
 using CA_interfaceAdapterData;
+using CA_InterfaceAdapters_Adapters;
+using CA_InterfaceAdapters_Adapters.Dtos;
 using CA_InterfaceAdapters_Mappers;
 using CA_InterfaceAdapters_Mappers.DTO.Request;
 using CA_InterfaceAdapters_Models;
@@ -34,12 +37,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(connectionString).LogTo(Console.WriteLine, LogLevel.Information));
 
 
+// SERVICIOS DE FRAMEWORKS
+// Servoiicio httpClient de la framework de .NET
+builder.Services.AddHttpClient();
+
+
 //Servicio de la capa de aplicación
 // para la entidad Beer
 builder.Services.AddScoped<IRepository<Beer>, BeerRepository>();
 builder.Services.AddScoped<IPresenter<Beer, BeerViewModel>, BeerPresenter>();
 builder.Services.AddScoped<IPresenter<Beer, BeerDetailViewModel>, BeerDetailPresenter>();
 builder.Services.AddScoped<IMapper<BeerRequestDTO, Beer>, BeerMapper>();
+builder.Services.AddScoped<IExternalService<PostServiceDTO>, PostService>();
+builder.Services.AddScoped<IExternalServiceAdapter<Post>, PostExternalServiceAdapter>();
 
 // casos de uso para la entidad Beer
 builder.Services.AddScoped<GetBeerUseCase<Beer, BeerViewModel>>();
@@ -60,6 +70,9 @@ builder.Services.AddScoped<GetUserUseCase<User, UserViewModel>>();
 builder.Services.AddScoped<AddUserUseCase<UserRequestDTO>>();
 builder.Services.AddScoped<DeleteUserUseCase>();
 builder.Services.AddScoped<UpdateUserUseCase<UserRequestDTO>>();
+
+// CASO DE USO PARA POST
+builder.Services.AddScoped<GetPostUseCase>();
 
 
 
@@ -275,6 +288,27 @@ userApi.MapPut("/", async (UpdateUserUseCase<UserRequestDTO> updateUserUseCase, 
 })
     .WithName("API Update User")
     .WithTags("Users");
+
+
+
+#endregion
+
+#region ENDPOINTS POSTS
+
+// Crear el grupo para Cervezas
+var postApi = app.MapGroup("/api/post")
+                 .WithTags("Posts")
+                 .WithOpenApi();
+
+
+
+// ENDPOINT PARA AGREGAR UNA CERVEZA
+postApi.MapGet("/", async (GetPostUseCase getPostUseCase) =>
+{
+    return await getPostUseCase.ExecuteAsync();
+})
+.WithName("API Get Posts")
+.WithTags("Posts");
 
 
 
