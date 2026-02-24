@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.- CA-InterfaceAdapters-Ad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.- CA-FrameworksDrivers-ExtenalService", "CA-FrameworksDrivers-ExtenalService\4.- CA-FrameworksDrivers-ExtenalService.csproj", "{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.- CA-FrameworksDrivers-Console", "CA-FrameworksDrivers-Console\4.- CA-FrameworksDrivers-Console.csproj", "{62C44B38-246F-4C03-8214-21FD67B60757}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F22A7B5-BD5E-430C-A691-69CE6A7E42BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C44B38-246F-4C03-8214-21FD67B60757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C44B38-246F-4C03-8214-21FD67B60757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C44B38-246F-4C03-8214-21FD67B60757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C44B38-246F-4C03-8214-21FD67B60757}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
