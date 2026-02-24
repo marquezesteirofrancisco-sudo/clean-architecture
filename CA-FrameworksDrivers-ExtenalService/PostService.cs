@@ -23,7 +23,7 @@ namespace CA_FrameworksDrivers_ExtenalService
         public async Task<IEnumerable<PostServiceDTO>> GetContentAsync()
         {
             
-            var response = await _httpClient.GetAsync("https://jsonplaceholder.typicode.com/posts");
+            var response = await _httpClient.GetAsync(_httpClient.BaseAddress);
 
             response.EnsureSuccessStatusCode();
 

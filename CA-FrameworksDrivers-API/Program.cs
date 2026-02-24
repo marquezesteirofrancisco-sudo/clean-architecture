@@ -1,4 +1,5 @@
 using CA_ApplicationLayer;
+using CA_FrameworksDrivers_API;
 using CA_FrameworksDrivers_API.Middelwares;
 using CA_FrameworksDrivers_API.Validator;
 using CA_FrameworksDrivers_ExtenalService;
@@ -30,50 +31,14 @@ builder.Services.AddFluentValidationAutoValidation();
 // DEPENDENCIAS (El "Material") ---
 // Aquí es donde registramos los servicios que vamos a usar en nuestra API, como el repositorio y el contexto de la base de datos.
 
-
-//// Servicio del contexto de la base de datos
+// Servicio del contexto de la base de datos
 var connectionString = builder.Configuration.GetConnectionString("ConexionSQLServer");
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(connectionString).LogTo(Console.WriteLine, LogLevel.Information));
 
 
-// SERVICIOS DE FRAMEWORKS
-// Servoiicio httpClient de la framework de .NET
-builder.Services.AddHttpClient();
-
-
-//Servicio de la capa de aplicación
-// para la entidad Beer
-builder.Services.AddScoped<IRepository<Beer>, BeerRepository>();
-builder.Services.AddScoped<IPresenter<Beer, BeerViewModel>, BeerPresenter>();
-builder.Services.AddScoped<IPresenter<Beer, BeerDetailViewModel>, BeerDetailPresenter>();
-builder.Services.AddScoped<IMapper<BeerRequestDTO, Beer>, BeerMapper>();
-builder.Services.AddScoped<IExternalService<PostServiceDTO>, PostService>();
-builder.Services.AddScoped<IExternalServiceAdapter<Post>, PostExternalServiceAdapter>();
-
-// casos de uso para la entidad Beer
-builder.Services.AddScoped<GetBeerUseCase<Beer, BeerViewModel>>();
-builder.Services.AddScoped<GetBeerUseCase<Beer, BeerDetailViewModel>>();
-builder.Services.AddScoped<AddBeerUseCase<BeerRequestDTO>>();
-builder.Services.AddScoped<DeleteBeerUseCase>();
-builder.Services.AddScoped<UpdateBeerUseCase<BeerRequestDTO>>();
-
-
-// para la entidad User
-builder.Services.AddScoped<IRepository<User>, UserRepository>();
-builder.Services.AddScoped<IPresenter<User, UserViewModel>, UserPresenter>();
-builder.Services.AddScoped<IMapper<UserRequestDTO, User>, UserMapper>();
-
-
-// CASOS DE USO PARA USER
-builder.Services.AddScoped<GetUserUseCase<User, UserViewModel>>();
-builder.Services.AddScoped<AddUserUseCase<UserRequestDTO>>();
-builder.Services.AddScoped<DeleteUserUseCase>();
-builder.Services.AddScoped<UpdateUserUseCase<UserRequestDTO>>();
-
-// CASO DE USO PARA POST
-builder.Services.AddScoped<GetPostUseCase>();
-
+// --- REGISTRO DE SERVICIOS DE LA SOLUCION ORGANIZADOS ---
+builder.Services.AddBackendServices(builder.Configuration);
 
 
 // --- SERVICIOS (El "Enchufe") ---
@@ -102,10 +67,9 @@ if (app.Environment.IsDevelopment())
         // Opcional: Configuramos la UI de Swagger
         options.RoutePrefix = string.Empty;
     });
-
 }
 
-
+// Redirige HTTP a HTTPS
 app.UseHttpsRedirection();
 
 
@@ -209,7 +173,6 @@ beerApi.MapPut("/", async (UpdateBeerUseCase<BeerRequestDTO> updateBeerUseCase, 
 
 
 #endregion
-
 
 #region ENDPOINTS USERS
 
