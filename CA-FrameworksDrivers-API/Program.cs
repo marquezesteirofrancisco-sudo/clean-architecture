@@ -1,5 +1,6 @@
 using CA_ApplicationLayer;
 using CA_FrameworksDrivers_API.Middelwares;
+using CA_FrameworksDrivers_API.Validator;
 using CA_interfaceAdapterData;
 using CA_InterfaceAdapters_Mappers;
 using CA_InterfaceAdapters_Mappers.DTO.Request;
@@ -7,14 +8,12 @@ using CA_InterfaceAdapters_Models;
 using CA_InterfaceAdapters_Presenters;
 using CA_InterfaceAdapters_Repository;
 using CL_EnterpriseLayer;
-using CA_FrameworksDrivers_API.Validator;
-
+using FluentValidation;
+using FluentValidation.AspNetCore; // Opcional, para personalizar la UI
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.OpenApi; // Para AddOpenApi
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using FluentValidation;
-using FluentValidation.AspNetCore; // Opcional, para personalizar la UI
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,7 +85,11 @@ if (app.Environment.IsDevelopment())
     {
         // IMPORTANTE: Le decimos a Swagger que lea el JSON generado por .NET 9
         options.SwaggerEndpoint("/openapi/v1.json", "Mi API v1");
+
+        // Opcional: Configuramos la UI de Swagger
+        options.RoutePrefix = string.Empty;
     });
+
 }
 
 
