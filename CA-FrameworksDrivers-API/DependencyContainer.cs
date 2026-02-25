@@ -33,7 +33,12 @@ public static class DependencyContainer
         services.AddScoped<IPresenter<User, UserViewModel>, UserPresenter>();
         services.AddScoped<IMapper<UserRequestDTO, User>, UserMapper>();
 
-        // 4. CASOS DE USO (Application Layer)
+        // 4. REPOSITORIOS, MAPPERS Y PRESENTERS (Sales)
+        services.AddScoped<IRepository<Sale>, SaleRepository>();
+        services.AddScoped<IMapper<SaleRequestDTO, Sale>, SaleMapper>();
+
+
+        // 5. CASOS DE USO (Application Layer)
         services.AddApplicationUseCases();
 
         return services;
@@ -56,6 +61,12 @@ public static class DependencyContainer
 
         // Post Use Cases
         services.AddScoped<GetPostUseCase>();
+
+        // Sale Use Cases
+        services.AddScoped<GenerateSaleUseCase<SaleRequestDTO>>();
+        services.AddScoped<GetSalesUseCase>();
+        services.AddScoped<DeleteSaleUseCase>();
+        services.AddScoped<UpdateSaleUseCase<SaleRequestDTO>>();
 
         return services;
     }

@@ -94,7 +94,7 @@ beerApi.MapGet("/", async (GetBeerUseCase<Beer, BeerViewModel> getBeerUseCase) =
 .WithName("API Get Beers")
 .WithTags("Beers");
 
-
+// END POINT PARA DEVOLVER LOS DETALLES DE LAS CERVEZAS
 beerApi.MapGet("/details", async (GetBeerUseCase<Beer, BeerDetailViewModel> getBeerUseCase) =>
 {
     return await getBeerUseCase.ExecuteAsync();
@@ -177,13 +177,13 @@ beerApi.MapPut("/", async (UpdateBeerUseCase<BeerRequestDTO> updateBeerUseCase, 
 #region ENDPOINTS USERS
 
 
-// Crear el grupo para Cervezas
+// Crear el grupo para Usuarios
 var userApi = app.MapGroup("/api/user")
                  .WithTags("Users")
                  .WithOpenApi();
 
 
-// END POINT PARA DEVOLVER TODAS LOS USIOS
+// END POINT PARA DEVOLVER TODAS LOS USUARIOS
 userApi.MapGet("/", async (GetUserUseCase<User, UserViewModel> getUserUseCase) =>
 {
     return await getUserUseCase.ExecuteAsync();
@@ -275,6 +275,93 @@ postApi.MapGet("/", async (GetPostUseCase getPostUseCase) =>
 
 
 
+#endregion
+
+#region ENDPOINTS SALES
+
+// Crear el grupo para Cervezas
+var saleApi = app.MapGroup("/api/sales")
+                 .WithTags("Sales")
+                 .WithOpenApi();
+
+
+// ENDPOINT PARA AGREGAR UNA VENTA
+saleApi.MapPost("/", async (GenerateSaleUseCase<SaleRequestDTO> generateSaleUseCase, SaleRequestDTO salesRequest) =>
+{
+    await generateSaleUseCase.ExecuteAsync(salesRequest);
+
+    return Results.Created("/api/sales", salesRequest);
+})
+.WithName("API Add Sale")
+.WithTags("Sales");
+
+
+// END POINT PARA DEVOLVER TODAS LAS VENTAS
+saleApi.MapGet("/", async (GetSalesUseCase getSalesUseCase) =>
+{
+    return await getSalesUseCase.ExecuteAsync();
+})
+.WithName("API Get Sales")
+.WithTags("Sales");
+
+
+// END POINT PARA DEVOLVER UNA VENTA POR ID
+saleApi.MapGet("/{id:int}", async (GetSalesUseCase getSaleUseCase, int id) =>
+{
+    return await getSaleUseCase.ExecuteAsync(id);
+})
+.WithName("API Get Sale by Id")
+.WithTags("Sales");
+
+
+// ENDPOINT PARA ELIMINAR UNA VENTA
+saleApi.MapDelete("/{id:int}", async (int id, DeleteSaleUseCase deleteSaleUseCase) =>
+{
+    try
+    {
+        await deleteSaleUseCase.ExecuteAsync(id);
+
+        return Results.NoContent();
+    }
+    catch (KeyNotFoundException ex)
+    {
+        // Transformamos el error interno en un 404 para el cliente
+        return Results.NotFound(new { message = ex.Message });
+    }
+    catch (Exception ex)
+    {
+        // Cualquier otro error sigue siendo un 500
+        return Results.Problem("Ocurrió un error inesperado.");
+    }
+})
+.WithName("API Delete Sale")
+.WithTags("Sales");
+
+
+// ENDPOINT PARA MODIFICAR UNA VENTA
+saleApi.MapPut("/", async (UpdateSaleUseCase<SaleRequestDTO> updateSaleUseCase, SaleRequestDTO saleRequest) =>
+{
+    try
+    {
+        await updateSaleUseCase.ExecuteAsync(saleRequest);
+
+        return Results.Created("/api/sale", saleRequest);
+
+    }
+    catch (KeyNotFoundException ex)
+    {
+        // Transformamos el error interno en un 404 para el cliente
+        return Results.NotFound(new { message = ex.Message });
+    }
+    catch (Exception ex)
+    {
+        // Cualquier otro error sigue siendo un 500
+        return Results.Problem("Ocurrió un error inesperado.");
+    }
+
+})
+    .WithName("API Update Sale")
+    .WithTags("Sales");
 #endregion
 
 app.Run();
