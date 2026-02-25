@@ -3,10 +3,11 @@ using CA_interfaceAdapterData;
 using CA_InterfaceAdapters_Models;
 using CL_EnterpriseLayer;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace CA_InterfaceAdapters_Repository
 {
-    public class SaleRepository : IRepository<Sale>
+    public class SaleRepository : IRepository<Sale>, IRepositorySearch<SaleModel, Sale>
     {
 
         private readonly AppDbContext _DbContext;
@@ -133,6 +134,30 @@ namespace CA_InterfaceAdapters_Repository
 
             await _DbContext.SaveChangesAsync();
 
+        }
+
+        public async Task<IEnumerable<Sale>> GetAsync(Expression<Func<SaleModel, bool>> predicate)
+        {
+            
+            var saleModels = await _DbContext.Sales.Include("Concepts")
+                                        .Where(predicate)
+                                        .AsNoTracking()
+                                        .ToListAsync();
+
+            var sales = new List<Sale>();
+
+            foreach (var saleModel in saleModels)
+            {
+                var sale = new Sale(saleModel.Id, saleModel.CreationDate,
+                                _DbContext.Concepts
+                                    .Where(c => c.IdSale == saleModel.Id)
+                                    .Select(c => new Concept(c.Id, c.Quantity, c.IdBeer, c.UnitPrice))
+                                    .ToList()
+                                );
+                sales.Add(sale);
+            }
+
+            return  sales;
         }
     }
 }

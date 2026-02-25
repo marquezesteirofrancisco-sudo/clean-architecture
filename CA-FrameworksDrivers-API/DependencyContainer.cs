@@ -5,6 +5,7 @@ using CA_InterfaceAdapters_Adapters;
 using CA_InterfaceAdapters_Adapters.Dtos;
 using CA_InterfaceAdapters_Mappers;
 using CA_InterfaceAdapters_Mappers.DTO.Request;
+using CA_InterfaceAdapters_Models;
 using CA_InterfaceAdapters_Presenters;
 using CA_InterfaceAdapters_Repository;
 using CL_EnterpriseLayer;
@@ -35,9 +36,9 @@ public static class DependencyContainer
 
         // 4. REPOSITORIOS, MAPPERS Y PRESENTERS (Sales)
         services.AddScoped<IRepository<Sale>, SaleRepository>();
+        services.AddScoped<IRepositorySearch<SaleModel, Sale>, SaleRepository>();
         services.AddScoped<IMapper<SaleRequestDTO, Sale>, SaleMapper>();
-
-
+        
         // 5. CASOS DE USO (Application Layer)
         services.AddApplicationUseCases();
 
@@ -67,6 +68,7 @@ public static class DependencyContainer
         services.AddScoped<GetSalesUseCase>();
         services.AddScoped<DeleteSaleUseCase>();
         services.AddScoped<UpdateSaleUseCase<SaleRequestDTO>>();
+        services.AddScoped<GetSalesSearchUseCase<SaleModel>>();
 
         return services;
     }

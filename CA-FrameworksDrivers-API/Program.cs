@@ -362,6 +362,16 @@ saleApi.MapPut("/", async (UpdateSaleUseCase<SaleRequestDTO> updateSaleUseCase, 
 })
     .WithName("API Update Sale")
     .WithTags("Sales");
+
+
+// END POINT PARA DEVOLVER TODAS LAS VENTAS QUE SUPEREN UN TOTAL 
+saleApi.MapGet("/salesearch/{total:int}", async (GetSalesSearchUseCase<SaleModel> getSalesSearchUseCase, int total) =>
+{
+    return await getSalesSearchUseCase.ExecuteAsync(s => s.Total > total);
+})
+.WithName("API Get Sales Search")
+.WithTags("Sales");
+
 #endregion
 
 app.Run();
