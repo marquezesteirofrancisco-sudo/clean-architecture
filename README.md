@@ -1,4 +1,6 @@
-![Esquema de Clean Architecture](./asset/Plano-de Clean-Archiquecture.png)
+<p align="center">
+  <img src="./assets/clean-architecture.png" alt="Esquema de Clean Architecture" width="550">
+</p>
 
 "# clean-architecture" 
 # 🍺 Beer & User Management System
